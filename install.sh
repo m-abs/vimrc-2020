@@ -2,6 +2,12 @@
 
 BASE_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
+if [[ ! -f $HOME/.vimrc2 ]]; then
+  cat > $HOME/.vimrc2 << EOF
+source $BASE_PATH/vimrc
+EOF
+fi
+
 cd $BASE_PATH
 
 COC_DIR="${BASE_PATH}/pack/coc/start"
@@ -31,4 +37,15 @@ fi
 DART_DIR="${BASE_PATH}/pack/dart/start/dart-vim-plugin"
 if [[ ! -d ${DART_DIR} ]]; then
   git clone https://github.com/dart-lang/dart-vim-plugin.git ${DART_DIR}
+fi
+
+CSHARP_DIR="${BASE_PATH}/pack/plugin/start/omnisharp-vim"
+if [[ ! -d ${CSHARP_DIR} ]]; then
+  git clone git://github.com/OmniSharp/omnisharp-vim ${CSHARP_DIR}
+  vim +OmniSharpInstall +qall
+fi
+
+NERDTREE_DIR="${BASE_PATH}/pack/plugin/start/nerdtree"
+if [[ ! -d ${NERDTREE_DIR} ]]; then
+  git clone git://github.com/preservim/nerdtree ${NERDTREE_DIR}
 fi
