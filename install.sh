@@ -2,8 +2,8 @@
 
 BASE_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-if [[ ! -f $HOME/.vimrc2 ]]; then
-  cat > $HOME/.vimrc2 << EOF
+if [[ ! -f $HOME/.vimrc ]]; then
+  cat > $HOME/.vimrc << EOF
 source $BASE_PATH/vimrc
 EOF
 fi
@@ -41,11 +41,11 @@ fi
 
 CSHARP_DIR="${BASE_PATH}/pack/plugin/start/omnisharp-vim"
 if [[ ! -d ${CSHARP_DIR} ]]; then
-  git clone git://github.com/OmniSharp/omnisharp-vim ${CSHARP_DIR}
+  git clone git@github.com:OmniSharp/omnisharp-vim.git ${CSHARP_DIR}
   vim +OmniSharpInstall +qall
 fi
 
 NERDTREE_DIR="${BASE_PATH}/pack/plugin/start/nerdtree"
 if [[ ! -d ${NERDTREE_DIR} ]]; then
-  git clone git://github.com/preservim/nerdtree ${NERDTREE_DIR}
+  git clone git@github.com:preservim/nerdtree.git ${NERDTREE_DIR}
 fi
