@@ -197,3 +197,5 @@ vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
+
+au BufReadCmd *.webpub call zip#Browse(expand("<amatch>"))

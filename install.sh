@@ -34,18 +34,27 @@ if [[ ! -d $EDITORCONFIG_PATH ]]; then
   )
 fi
 
+function GIT_CLONE_UPDATE()
+{
+  TARGET_DIR=$1
+  GIT_REPO=$2
+
+  if [[ ! -d ${TARGET_DIR} ]]; then
+    git clone ${GIT_REPO} ${TARGET_DIR}
+  fi
+
+  (cd ${TARGET_DIR} && git pull)
+}
+
 DART_DIR="${BASE_PATH}/pack/dart/start/dart-vim-plugin"
-if [[ ! -d ${DART_DIR} ]]; then
-  git clone https://github.com/dart-lang/dart-vim-plugin.git ${DART_DIR}
-fi
+DART_GIT_REPO=https://github.com/dart-lang/dart-vim-plugin.git
+GIT_CLONE_UPDATE ${DART_DIR} ${DART_GIT_REPO}
 
 CSHARP_DIR="${BASE_PATH}/pack/plugin/start/omnisharp-vim"
-if [[ ! -d ${CSHARP_DIR} ]]; then
-  git clone git@github.com:OmniSharp/omnisharp-vim.git ${CSHARP_DIR}
-  vim +OmniSharpInstall +qall
-fi
+CSHARP_GIT_REPO=git@github.com:OmniSharp/omnisharp-vim.git
+GIT_CLONE_UPDATE ${CSHARP_DIR} ${CSHARP_GIT_REPO}
+vim +OmniSharpInstall +qall
 
 NERDTREE_DIR="${BASE_PATH}/pack/plugin/start/nerdtree"
-if [[ ! -d ${NERDTREE_DIR} ]]; then
-  git clone git@github.com:preservim/nerdtree.git ${NERDTREE_DIR}
-fi
+NERDTREE_GIT_REPO=git@github.com:preservim/nerdtree.git
+GIT_CLONE_UPDATE ${NERDTREE_DIR} ${NERDTREE_GIT_REPO}
